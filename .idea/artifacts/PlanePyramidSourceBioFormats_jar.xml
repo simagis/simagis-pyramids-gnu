@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlanePyramidSourceBioFormats:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PlanePyramidSourceBioFormats_jar</output-path>
+    <root id="archive" name="PlanePyramidSourceBioFormats.jar">
+      <element id="module-output" name="PlanePyramidSourceBioFormats" />
+    </root>
+  </artifact>
+</component>

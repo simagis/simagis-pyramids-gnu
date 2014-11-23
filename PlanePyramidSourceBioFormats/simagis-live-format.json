@@ -1,0 +1,32 @@
+{
+    "classPath": [
+        "algart-1.2.jar",
+        "simagis-plane-pyramid-sdk-1.0.jar",
+        "LivePyramid/*",
+        "bio-formats/loci_tools-5.0.6.jar",
+        "log4j-1.2.17.jar",
+        "json-0.1.jar",
+        "PlanePyramidSourceBioFormats.jar"
+    ],
+    "vmOptions": [
+        "-ea",
+        "-esa",
+        "-Xms256m",
+        "-Xmx600m"
+    ],
+    "defaultDataFile": "data.loci",
+    "viewer": {
+        "planePyramidSourceFactory": "com.simagis.pyramid.loci.server.LociPlanePyramidSourceFactory"
+    },
+    "uploaders": [
+        {
+            "multiFile": false,
+            "keepOriginalFileExtension": true,
+            "formatDetection": {
+                "method": "any"
+            },
+            "projectBuilderClass": "com.simagis.live.upload.project.MultilayerZCTProjectBuilder",
+            "extractingMetadataUtility": "com.simagis.pyramid.loci.server.Loci2Json"
+        }
+    ]
+}
