@@ -16,6 +16,7 @@
         <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceBioFormats/simagis-live-format.json" />
       </element>
+      <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/install-pp-gnu.cmd" />
     </root>
   </artifact>
 </component>
