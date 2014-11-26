@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.simagis.pyramid</groupId>
-    <artifactId>plane-pyramid-bio-formats</artifactId>
+    <artifactId>plane-pyramid-openslide</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -20,9 +20,9 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>ome</groupId>
-            <artifactId>loci_tools</artifactId>
-            <version>5.0.6</version>
+            <groupId>net.simagis.ext.openslide</groupId>
+            <artifactId>OpenSlideJava</artifactId>
+            <version>0.1</version>
         </dependency>
     </dependencies>
 
@@ -31,9 +31,6 @@
             <id>simagis-open-releases</id>
             <url>http://simagis.artifactoryonline.com/simagis/open-releases-local</url>
         </repository>
-        <repository>
-            <id>ome.releases</id>
-            <url>http://artifacts.openmicroscopy.org/artifactory/ome.releases</url>
-        </repository>
     </repositories>
+
 </project>
