@@ -8,7 +8,7 @@
           <element id="library" level="project" name="Maven: ome:loci_tools:5.0.6" />
         </element>
         <element id="library" level="project" name="Maven: net.algart:algart:1.2" />
-        <element id="library" level="project" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0" />
+        <element id="library" level="project" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.1" />
         <element id="directory" name="LivePyramid">
           <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceBioFormats/readme.live.txt" output-file-name="readme.txt" />
         </element>

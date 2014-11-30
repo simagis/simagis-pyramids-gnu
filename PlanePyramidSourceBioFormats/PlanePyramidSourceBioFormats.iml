@@ -12,7 +12,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: net.algart:algart:1.2" level="project" />
-    <orderEntry type="library" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext:json:0.1" level="project" />
     <orderEntry type="library" name="Maven: ome:loci_tools:5.0.6" level="project" />
     <orderEntry type="library" name="Maven: ome:bio-formats_plugins:5.0.6" level="project" />
