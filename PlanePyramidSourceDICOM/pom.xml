@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.simagis.pyramid</groupId>
-    <artifactId>plane-pyramid-openslide</artifactId>
+    <artifactId>plane-pyramid-dicom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -20,13 +20,18 @@
             <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>net.simagis.ext.openslide</groupId>
-            <artifactId>OpenSlideJava</artifactId>
-            <version>0.1</version>
+            <groupId>dcm4che</groupId>
+            <artifactId>dcm4che-imageio</artifactId>
+            <version>2.0.27</version>
         </dependency>
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>dcm4che</id>
+            <name>dcm4che Repository</name>
+            <url>http://www.dcm4che.org/maven2</url>
+        </repository>
         <repository>
             <id>simagis-open-releases</id>
             <url>http://simagis.artifactoryonline.com/simagis/open-releases-local</url>

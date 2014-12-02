@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="PlanePyramidSourceBioFormats" />
+        <module name="PlanePyramidSourceDICOM" />
         <module name="PlanePyramidSourceOpenSlide" />
       </profile>
     </annotationProcessing>

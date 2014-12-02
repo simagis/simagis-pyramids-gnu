@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: dcm4che:dcm4che-imageio:2.0.27">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/dcm4che/dcm4che-imageio/2.0.27/dcm4che-imageio-2.0.27.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/dcm4che/dcm4che-imageio/2.0.27/dcm4che-imageio-2.0.27-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/dcm4che/dcm4che-imageio/2.0.27/dcm4che-imageio-2.0.27-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
