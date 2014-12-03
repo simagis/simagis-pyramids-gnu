@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import javax.imageio.metadata.IIOMetadata;
 
-public class DICOMImageIO2Json extends LegacyImageIO2Json {
+public class LegacyDICOMImageIO2Json extends LegacyImageIO2Json {
     @Override
     protected void processStreamMetadata(
         JSONObject result,
@@ -14,7 +14,7 @@ public class DICOMImageIO2Json extends LegacyImageIO2Json {
         IIOMetadataToJsonConverter converter)
         throws JSONException
     {
-        DICOMImageIOMetadata imageIOMetadata = DICOMImageIOMetadata.getInstance(streamMetadata, 0   );
+        DICOMImageIOMetadata imageIOMetadata = DICOMImageIOMetadata.getInstance(streamMetadata, 0);
         if (imageIOMetadata != null) {
             result.put("DICOMMetadata", new JSONObject(imageIOMetadata));
         } else {
@@ -23,6 +23,6 @@ public class DICOMImageIO2Json extends LegacyImageIO2Json {
     }
 
     public static void main(String[] args) {
-        new DICOMImageIO2Json().buildJson(args);
+        new LegacyDICOMImageIO2Json().buildJson(args);
     }
 }
