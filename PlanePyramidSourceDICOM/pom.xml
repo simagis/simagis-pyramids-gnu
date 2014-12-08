@@ -24,6 +24,18 @@
             <artifactId>dcm4che-imageio</artifactId>
             <version>2.0.27</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.media</groupId>
+            <artifactId>jai_imageio</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <!-- slf4j-api is included by dcm4che while compilation, and slf4j-simple in the test scope;
+        we need to add some implementation to include JAR into the artifact, and we prefer NOP version -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.6.1</version>
+        </dependency>
     </dependencies>
 
     <repositories>

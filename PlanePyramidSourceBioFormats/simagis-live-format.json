@@ -1,7 +1,7 @@
 {
     "classPath": [
         "algart-1.2.jar",
-        "simagis-plane-pyramid-sdk-1.0.1.jar",
+        "simagis-plane-pyramid-sdk-1.0.2.jar",
         "LivePyramid/*",
         "bio-formats/loci_tools-5.0.6.jar",
         "log4j-1.2.17.jar",
@@ -25,6 +25,7 @@
             "formatDetection": {
                 "method": "any"
             },
+            "priority": 1000,
             "projectBuilderClass": "com.simagis.live.upload.project.MultilayerZCTProjectBuilder",
             "extractingMetadataUtility": "com.simagis.pyramid.loci.server.Loci2Json"
         }

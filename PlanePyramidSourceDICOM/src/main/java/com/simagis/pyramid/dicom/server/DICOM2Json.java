@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Set;
 
 public class DICOM2Json {
     public static void main(String... args) {
@@ -74,7 +73,8 @@ public class DICOM2Json {
             result.put("dimX", dimX);
             result.put("dimY", dimY);
             final Iterator<ImageTypeSpecifier> iioImageTypes = reader.getImageTypes(0);
-            if (iioImageTypes.hasNext()) {
+            if (iioImageTypes != null && iioImageTypes.hasNext()) {
+                // some 3rd party implementation can still return null here, though it is prohibited in JavaDoc
                 ImageTypeSpecifier imageTypeSpecifier = iioImageTypes.next();
                 imageType.put("numComponents", imageTypeSpecifier.getNumComponents());
                 imageType.put("numBands", imageTypeSpecifier.getNumBands());
@@ -112,16 +112,18 @@ public class DICOM2Json {
     private static JSONObject extractLiveProject(JSONObject resultJson)
         throws ScriptException, JSONException, IOException
     {
-        final JSONObject result = new JSONObject();
-        final JSONObject dicomMetadata = result.optJSONObject("DICOMMetadata");
+        final JSONObject dicomMetadata = resultJson.optJSONObject("DICOMMetadata");
         if (dicomMetadata != null) {
+            JSONObject liveProject = new JSONObject();
             final JSONArray attributes = new JSONArray();
-            result.put("attributes", attributes);
             for (String key : SimagisLiveUtils.getKeySet(dicomMetadata)) {
                 final Object value = dicomMetadata.get(key);
-                SimagisLiveUtils.putRowAttribute(attributes, key, value, true);
+                SimagisLiveUtils.putRowAttribute(attributes, "DICOM." + key, value, true);
             }
+            liveProject.put("attributes", attributes);
+            return liveProject;
+        } else {
+            return null;
         }
-        return result;
     }
 }

@@ -1,0 +1,47 @@
+{
+    "title": "DICOM",
+    "classPath": [
+        "algart-1.2.jar",
+        "simagis-plane-pyramid-sdk-1.0.2.jar",
+        "LivePyramid/*",
+        "dcm4che/dcm4che-core-2.0.27.jar",
+        "dcm4che/dcm4che-image-2.0.27.jar",
+        "dcm4che/dcm4che-imageio-2.0.27.jar",
+        "JAI/jai_imageio-1.1.jar",
+        "SLF4J/slf4j-api-1.6.1.jar",
+        "SLF4J/slf4j-nop-1.6.1.jar",
+        "log4j-1.2.17.jar",
+        "json-0.1.jar",
+        "PlanePyramidSourceDICOM.jar"
+    ],
+    "vmOptions": [
+        "-ea",
+        "-esa",
+        "-Xms256m",
+        "-Xmx600m"
+    ],
+    "defaultDataFile": "data.dcm",
+    "viewer": {
+        "planePyramidSourceFactory": "com.simagis.pyramid.dicom.server.DICOMImageIOPlanePyramidSourceFactory"
+    },
+    "uploaders": [
+        {
+            "keepOriginalFileExtension": true,
+            "formatDetection": {
+                "method": "any"
+            },
+            "priority": 500,
+            "extractingMetadataUtility": "com.simagis.pyramid.dicom.server.DICOM2Json"
+        },
+        {
+            "keepOriginalFileExtension": true,
+            "formatDetection": {
+                "method": "extension",
+                "extensions": [
+                    "dcm"
+                ]
+            },
+            "extractingMetadataUtility": "com.simagis.pyramid.dicom.server.DICOM2Json"
+        }
+    ]
+}

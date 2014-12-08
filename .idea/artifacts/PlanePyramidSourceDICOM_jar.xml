@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlanePyramidSourceDICOM:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PlanePyramidSourceDICOM_jar</output-path>
+    <root id="archive" name="PlanePyramidSourceDICOM.jar">
+      <element id="module-output" name="PlanePyramidSourceDICOM" />
+    </root>
+  </artifact>
+</component>

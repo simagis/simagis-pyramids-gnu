@@ -12,7 +12,7 @@ import java.awt.image.*;
 import java.io.IOException;
 import java.util.Iterator;
 
-public final class DICOMImageIOReadingBehaviour extends ImageIOPlanePyramidSource.ImageIOReadingBehaviour {
+final class DICOMImageIOReadingBehaviour extends ImageIOPlanePyramidSource.ImageIOReadingBehaviour {
 
     private boolean rawRasterForMonochrome = false; // if true and image is monochrome, we use readRaster
     private boolean autoWindowing = true; // should be true for auto-detection of both center and width

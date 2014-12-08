@@ -18,5 +18,7 @@
     <orderEntry type="library" name="Maven: dcm4che:dcm4che-core:2.0.27" level="project" />
     <orderEntry type="library" name="Maven: dcm4che:dcm4che-image:2.0.27" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-nop:1.6.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.media:jai_imageio:1.1" level="project" />
   </component>
 </module>
