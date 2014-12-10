@@ -22,7 +22,13 @@
         <dependency>
             <groupId>dcm4che</groupId>
             <artifactId>dcm4che-imageio</artifactId>
-            <version>2.0.27</version>
+            <version>2.0.28</version>
+        </dependency>
+        <!-- the following dependencies are necessary to "understand" more DICOM formats -->
+        <dependency>
+            <groupId>dcm4che</groupId>
+            <artifactId>dcm4che-imageio-rle</artifactId>
+            <version>2.0.28</version>
         </dependency>
         <dependency>
             <groupId>com.sun.media</groupId>

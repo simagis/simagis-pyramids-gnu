@@ -20,9 +20,10 @@
       <element id="directory" name=".DICOM">
         <element id="artifact" artifact-name="PlanePyramidSourceDICOM:jar" />
         <element id="directory" name="dcm4che">
-          <element id="library" level="project" name="Maven: dcm4che:dcm4che-core:2.0.27" />
-          <element id="library" level="project" name="Maven: dcm4che:dcm4che-image:2.0.27" />
-          <element id="library" level="project" name="Maven: dcm4che:dcm4che-imageio:2.0.27" />
+          <element id="library" level="project" name="Maven: dcm4che:dcm4che-core:2.0.28" />
+          <element id="library" level="project" name="Maven: dcm4che:dcm4che-image:2.0.28" />
+          <element id="library" level="project" name="Maven: dcm4che:dcm4che-imageio:2.0.28" />
+          <element id="library" level="project" name="Maven: dcm4che:dcm4che-imageio-rle:2.0.28" />
         </element>
         <element id="directory" name="LivePyramid">
           <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" />
