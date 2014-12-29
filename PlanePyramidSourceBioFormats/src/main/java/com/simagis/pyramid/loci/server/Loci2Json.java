@@ -28,8 +28,8 @@ public class Loci2Json {
             final LociPlanePyramidSource source = new LociPlanePyramidSource(null, file);
             final JSONObject result = new JSONObject();
             final long[] dimensions = source.dimensions(0);
-            result.put("dimX", dimensions[1]);
-            result.put("dimY", dimensions[2]);
+            result.put("dimX", dimensions[PlanePyramidSource.DIM_WIDTH]);
+            result.put("dimY", dimensions[PlanePyramidSource.DIM_HEIGHT]);
             final IFormatReader reader = source.getReader();
             final int imageCount = reader.getImageCount();
             final JSONObject multilayerZCT = new JSONObject();
@@ -78,7 +78,6 @@ public class Loci2Json {
     {
         final JSONObject result = new JSONObject();
         final JSONArray attributes = new JSONArray();
-        result.put("attributes", attributes);
         result.put("bandCount", source.bandCount());
         SimagisLiveUtils.putRowAttribute(attributes, "bandCount", source.bandCount(), true);
         final IFormatReader reader = source.getReader();
@@ -117,6 +116,7 @@ public class Loci2Json {
         SimagisLiveUtils.putRowAttribute(attributes, "orderCertain", reader.isOrderCertain(), true);
         SimagisLiveUtils.putRowAttribute(attributes, "rgb", reader.isRGB(), true);
         SimagisLiveUtils.putRowAttribute(attributes, "thumbnailSeries", reader.isThumbnailSeries(), true);
+        result.put("attributes", attributes);
 
         final BufferedImage bufferedImage;
         try {
