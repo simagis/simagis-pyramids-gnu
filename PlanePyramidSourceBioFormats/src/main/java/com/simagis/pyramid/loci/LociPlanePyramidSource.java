@@ -81,7 +81,7 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
     }
 
     // compression=0 means automatic detection
-    // flattenedResolutions=false provide more automatic mode
+    // flattenedResolutions=false provides more automatic mode
     public LociPlanePyramidSource(
         ArrayContext context, File imageFile,
         String imageFormat, Integer requiredSeries, Boolean flattenedResolutions)
@@ -187,6 +187,11 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
                 largeData.freeResources();
             }
         }
+    }
+
+    public static boolean isLociFile(File imageFile) {
+        final ImageReader imageReader = new ImageReader();
+        return imageReader.isThisType(imageFile.getAbsolutePath(), true);
     }
 
     public IFormatReader getReader() {

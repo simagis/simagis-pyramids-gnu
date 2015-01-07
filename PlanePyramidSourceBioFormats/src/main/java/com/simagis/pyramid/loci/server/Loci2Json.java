@@ -25,32 +25,41 @@ public class Loci2Json {
             final JSONObject options = conf.getJSONObject("options");
             final File file = new File(conf.getJSONArray("values").getString(0));
             final JSONObject json = new JSONObject();
-            final LociPlanePyramidSource source = new LociPlanePyramidSource(null, file);
             final JSONObject result = new JSONObject();
-            final long[] dimensions = source.dimensions(0);
-            result.put("dimX", dimensions[PlanePyramidSource.DIM_WIDTH]);
-            result.put("dimY", dimensions[PlanePyramidSource.DIM_HEIGHT]);
-            final IFormatReader reader = source.getReader();
-            final int imageCount = reader.getImageCount();
-            final JSONObject multilayerZCT = new JSONObject();
-            multilayerZCT.put("imageCount", imageCount);
-            JSONArray allZCTs = new JSONArray();
-            for (int imageIndex = 0; imageIndex < imageCount; imageIndex++) {
-                final int[] zct = reader.getZCTCoords(imageIndex);
-                JSONObject jsonZCT = new JSONObject();
-                jsonZCT.put("z", zct[0]);
-                jsonZCT.put("c", zct[1]);
-                jsonZCT.put("t", zct[2]);
-                allZCTs.put(jsonZCT);
-            }
-            multilayerZCT.put("allZCT", allZCTs);
-            result.put("multilayerZCT", multilayerZCT);
+            result.put("formatChecked", true);
+            if (LociPlanePyramidSource.isLociFile(file) && !file.getName().toLowerCase().endsWith(".zip")) {
+                // Loci tries to "understand" usual zip-files and usually it leads to a strange error message
+                final LociPlanePyramidSource source = new LociPlanePyramidSource(null, file);
+                final long[] dimensions = source.dimensions(0);
+                result.put("dimX", dimensions[PlanePyramidSource.DIM_WIDTH]);
+                result.put("dimY", dimensions[PlanePyramidSource.DIM_HEIGHT]);
+                final IFormatReader reader = source.getReader();
+                final int imageCount = reader.getImageCount();
+                final JSONObject multilayerZCT = new JSONObject();
+                multilayerZCT.put("imageCount", imageCount);
+                JSONArray allZCTs = new JSONArray();
+                for (int imageIndex = 0; imageIndex < imageCount; imageIndex++) {
+                    final int[] zct = reader.getZCTCoords(imageIndex);
+                    JSONObject jsonZCT = new JSONObject();
+                    jsonZCT.put("z", zct[0]);
+                    jsonZCT.put("c", zct[1]);
+                    jsonZCT.put("t", zct[2]);
+                    allZCTs.put(jsonZCT);
+                }
+                multilayerZCT.put("allZCT", allZCTs);
+                result.put("multilayerZCT", multilayerZCT);
+                result.put("rejected", false);
 
-            if (options.optBoolean("extractLiveProject")) {
-                final File projectDir = new File(options.getString("projectDir"));
-                final File pyramidDir = new File(options.getString("pyramidDir"));
-                result.put("liveProject", extractLiveProject(source, projectDir, pyramidDir));
+                if (options.optBoolean("extractLiveProject")) {
+                    final File projectDir = new File(options.getString("projectDir"));
+                    final File pyramidDir = new File(options.getString("pyramidDir"));
+                    result.put("liveProject", extractLiveProject(source, projectDir, pyramidDir));
+                }
+            } else {
+                result.put("rejected", true);
+                result.put("message", "Invalid format (non-Loci file)");
             }
+            json.put("result", result);
             if (options.optBoolean("getFormats")) {
                 JSONArray jsonFormats = new JSONArray();
                 for (IFormatReader r : new ImageReader().getReaders()) {
@@ -62,7 +71,6 @@ public class Loci2Json {
                 }
                 json.put("lociFormats", jsonFormats);
             }
-            json.put("result", result);
             SimagisLiveUtils.OUT.print(json.toString(4));
 
             System.exit(0);
@@ -129,6 +137,7 @@ public class Loci2Json {
             // Loci image can be unpredictable and lead some errors while conversion,
             // for example, non-supported number of bits etc.; let's ignore such errors
             e.printStackTrace();
+            System.err.println("Loci: ignoring the previous error \"" + e + "\"");
             return result;
         }
         SimagisLiveUtils.putImageThumbnailAttribute(attributes, "Label image",
