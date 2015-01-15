@@ -5,9 +5,12 @@ import com.simagis.pyramid.PlanePyramidSource;
 import com.simagis.pyramid.loci.LociPlanePyramidSource;
 import loci.formats.IFormatReader;
 import loci.formats.ImageReader;
+import net.algart.arrays.ByteArray;
+import net.algart.arrays.Matrices;
 import net.algart.arrays.Matrix;
 import net.algart.arrays.PArray;
 import net.algart.external.MatrixToBufferedImageConverter;
+import net.algart.math.functions.LinearFunc;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +56,13 @@ public class Loci2Json {
                 if (options.optBoolean("extractLiveProject")) {
                     final File projectDir = new File(options.getString("projectDir"));
                     final File pyramidDir = new File(options.getString("pyramidDir"));
-                    result.put("liveProject", extractLiveProject(source, projectDir, pyramidDir));
+                    final JSONObject liveProject = extractLiveProject(source, projectDir, pyramidDir);
+                    if (liveProject == null) {
+                        result.put("rejected", true);
+                        result.put("message", "Loci cannot read the image");
+                    } else {
+                        result.put("liveProject", liveProject);
+                    }
                 }
             } else {
                 result.put("rejected", true);
@@ -128,17 +137,21 @@ public class Loci2Json {
 
         final BufferedImage bufferedImage;
         try {
-            final Matrix<? extends PArray> label =
+            Matrix<? extends PArray> label =
                 source.readSpecialMatrix(PlanePyramidSource.SpecialImageKind.LABEL_ONLY_IMAGE);
             final MatrixToBufferedImageConverter.Packed3DToPackedRGB converter =
                 new MatrixToBufferedImageConverter.Packed3DToPackedRGB(false);
+            if (converter.byteArrayRequired() && label.elementType() != byte.class) {
+                double max = label.array().maxPossibleValue(1.0);
+                label = Matrices.asFuncMatrix(LinearFunc.getInstance(0.0, 255.0 / max), ByteArray.class, label);
+            }
             bufferedImage = converter.toBufferedImage(label);
         } catch (RuntimeException e) {
             // Loci image can be unpredictable and lead some errors while conversion,
             // for example, non-supported number of bits etc.; let's ignore such errors
             e.printStackTrace();
-            System.err.println("Loci: ignoring the previous error \"" + e + "\"");
-            return result;
+            System.err.println("Loci: rejecting image due to the previous error \"" + e + "\"");
+            return null;
         }
         SimagisLiveUtils.putImageThumbnailAttribute(attributes, "Label image",
             SimagisLiveUtils.createThumbnail(projectDir, pyramidDir, "label", bufferedImage), true);
