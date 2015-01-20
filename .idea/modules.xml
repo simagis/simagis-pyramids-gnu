@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/LiveInstaller/LiveInstaller.iml" filepath="$PROJECT_DIR$/LiveInstaller/LiveInstaller.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceBioFormats/PlanePyramidSourceBioFormats.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceBioFormats/PlanePyramidSourceBioFormats.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceDICOM/PlanePyramidSourceDICOM.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceDICOM/PlanePyramidSourceDICOM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceDjatoka/PlanePyramidSourceDjatoka.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceDjatoka/PlanePyramidSourceDjatoka.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceOpenSlide/PlanePyramidSourceOpenSlide.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceOpenSlide/PlanePyramidSourceOpenSlide.iml" />
     </modules>
   </component>

@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="PlanePyramidSourceBioFormats" />
         <module name="PlanePyramidSourceDICOM" />
+        <module name="PlanePyramidSourceDjatoka" />
         <module name="PlanePyramidSourceOpenSlide" />
       </profile>
     </annotationProcessing>
