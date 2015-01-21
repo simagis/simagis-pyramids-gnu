@@ -31,6 +31,11 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
     private final int numberOfResolutions;
     private final long[][] dimensions;
 
+    public DjatokaPlanePyramidSource(File path) throws IOException, DjatokaException
+    {
+        this(null, path, DEFAULT_COMPRESSION);
+    }
+
     public DjatokaPlanePyramidSource(ArrayContext context, File path, int compression)
         throws IOException, DjatokaException
     {
@@ -60,6 +65,14 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
         this.decodeParam = new DjatokaDecodeParam();
         //decodeParam.setLevel(0);
         this.processor = new KduExtractProcessorJNI(imageRecord.getImageFile(), decodeParam);
+    }
+
+    public long getDimX() {
+        return dimX;
+    }
+
+    public long getDimY() {
+        return dimY;
     }
 
     @Override

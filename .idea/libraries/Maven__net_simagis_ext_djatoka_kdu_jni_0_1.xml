@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: net.simagis.ext.djatoka:kdu_jni:0.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/simagis/ext/djatoka/kdu_jni/0.1/kdu_jni-0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/net/simagis/ext/djatoka/kdu_jni/0.1/kdu_jni-0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/simagis/ext/djatoka/kdu_jni/0.1/kdu_jni-0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

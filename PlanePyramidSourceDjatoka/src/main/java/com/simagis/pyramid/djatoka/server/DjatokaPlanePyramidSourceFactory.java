@@ -20,10 +20,7 @@ public class DjatokaPlanePyramidSourceFactory implements PlanePyramidSourceFacto
     {
         final DjatokaPlanePyramidSource result;
         try {
-            result = new DjatokaPlanePyramidSource(
-                null,
-                new File(pyramidPath),
-                PlanePyramidSource.DEFAULT_COMPRESSION);
+            result = new DjatokaPlanePyramidSource(new File(pyramidPath));
         } catch (DjatokaException e) {
             throw PlanePyramidTools.rmiSafeWrapper(e);
         }

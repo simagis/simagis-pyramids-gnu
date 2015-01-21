@@ -20,16 +20,31 @@
             <version>1.0.3</version>
         </dependency>
         <dependency>
+            <groupId>net.simagis.ext</groupId>
+            <artifactId>log4j</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
             <groupId>net.simagis.ext.djatoka</groupId>
             <artifactId>adore-djatoka</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.simagis.ext.djatoka</groupId>
+            <artifactId>kdu_jni</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.simagis.ext.djatoka</groupId>
+            <artifactId>adore-djatoka-full-archive</artifactId>
             <version>1.1</version>
         </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>siams</id>
-            <url>http://maven.siams.com/nexus/content/repositories/releases</url>
+            <id>simagis-open-ext-releases</id>
+            <url>http://simagis.artifactoryonline.com/simagis/open-ext-releases-local</url>
         </repository>
         <repository>
             <id>simagis-open-releases</id>
