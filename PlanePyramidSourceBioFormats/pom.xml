@@ -15,6 +15,11 @@
             <version>1.2</version>
         </dependency>
         <dependency>
+            <groupId>net.simagis.ext</groupId>
+            <artifactId>json</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
             <groupId>com.simagis</groupId>
             <artifactId>simagis-plane-pyramid-sdk</artifactId>
             <version>1.0.3</version>
