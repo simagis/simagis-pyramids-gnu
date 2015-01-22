@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlanePyramidSourceDjatoka:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PlanePyramidSourceDjatoka_jar</output-path>
+    <root id="archive" name="PlanePyramidSourceDjatoka.jar">
+      <element id="module-output" name="PlanePyramidSourceDjatoka" />
+    </root>
+  </artifact>
+</component>

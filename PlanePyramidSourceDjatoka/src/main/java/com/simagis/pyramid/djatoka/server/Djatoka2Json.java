@@ -1,12 +1,7 @@
 package com.simagis.pyramid.djatoka.server;
 
 import com.simagis.live.json.minimal.SimagisLiveUtils;
-import com.simagis.pyramid.PlanePyramidSource;
 import com.simagis.pyramid.djatoka.DjatokaPlanePyramidSource;
-import net.algart.arrays.Matrix;
-import net.algart.arrays.PArray;
-import net.algart.external.MatrixToBufferedImageConverter;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

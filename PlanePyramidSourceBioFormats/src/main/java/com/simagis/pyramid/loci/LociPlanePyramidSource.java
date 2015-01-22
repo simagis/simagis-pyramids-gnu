@@ -53,7 +53,6 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
     private static final Logger LOGGER = Logger.getLogger(LociPlanePyramidSource.class.getName());
 
     private static final int DEFAULT_LOCI_COMPRESSION = 2;
-    private static final int DEBUG_LEVEL = 2;
 
     private final File imageFile;
     private final String imageFormat;
@@ -424,7 +423,7 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
         } catch (IOException e) {
             throw new IOError(e);
         } catch (FormatException e) {
-            throw new IOError(e);
+            throw new IOError(PlanePyramidTools.rmiSafeWrapper(e));
         } finally {
             largeData.lock.unlock();
         }

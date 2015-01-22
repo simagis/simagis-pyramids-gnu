@@ -1,0 +1,35 @@
+{
+    "title": "Djatoka JPEG 2000",
+    "classPath": [
+        "algart-1.2.jar",
+        "LiveAPI/simagis-plane-pyramid-sdk-1.0.3.jar",
+        "LivePyramid/*",
+        "djatoka/adore-djatoka-1.1.jar",
+        "djatoka/kdu_jni-0.1.jar",
+        "log4j-1.2.17.jar",
+        "json-0.1.jar",
+        "PlanePyramidSourceDjatoka.jar"
+    ],
+    "vmOptions": [
+        "-ea",
+        "-esa",
+        "-Xms256m",
+        "-Xmx600m"
+    ],
+    "defaultDataFile": "data.jp2",
+    "viewer": {
+        "planePyramidSourceFactory": "com.simagis.pyramid.djatoka.server.DjatokaPlanePyramidSourceFactory"
+    },
+    "uploaders": [
+        {
+            "multiFile": false,
+            "formatDetection": {
+                "method": "extension",
+                "extensions": [
+                    "jp2"
+                ]
+            },
+            "extractingMetadataUtility": "com.simagis.pyramid.djatoka.server.Djatoka2Json"
+        }
+    ]
+}

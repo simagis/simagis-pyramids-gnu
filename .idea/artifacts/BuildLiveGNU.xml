@@ -45,6 +45,27 @@
           <element id="library" level="project" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.3" />
         </element>
       </element>
+      <element id="directory" name=".djatoka">
+        <element id="artifact" artifact-name="PlanePyramidSourceDjatoka:jar" />
+        <element id="directory" name="LiveAPI">
+          <element id="library" level="project" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.3" />
+        </element>
+        <element id="directory" name="LivePyramid">
+          <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" output-file-name="readme.txt" />
+        </element>
+        <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+        <element id="library" level="project" name="Maven: net.algart:algart:1.2" />
+        <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
+        <element id="directory" name="djatoka">
+          <element id="library" level="project" name="Maven: net.simagis.ext.djatoka:adore-djatoka-full-archive:1.1" />
+          <element id="library" level="project" name="Maven: net.simagis.ext.djatoka:adore-djatoka:1.1" />
+          <element id="library" level="project" name="Maven: net.simagis.ext.djatoka:kdu_jni:0.1" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDjatoka/simagis-live-format.json" />
+        <element id="directory" name="x86">
+          <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/.keep" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

@@ -19,11 +19,11 @@ import java.util.NoSuchElementException;
 
 public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
 
-    private final File path;
     private final File debugDir;
     private final int compression;
     private final DjatokaDecodeParam decodeParam;
     private final KduExtractProcessorJNI processor;
+    private final Class<?> elementType;
     private final int bandCount;
     private final long dimX;
     private final long dimY;
@@ -36,30 +36,33 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
         this(null, path, DEFAULT_COMPRESSION);
     }
 
-    public DjatokaPlanePyramidSource(ArrayContext context, File path, int compression)
+    public DjatokaPlanePyramidSource(ArrayContext context, File jpegFile, int compression)
         throws IOException, DjatokaException
     {
         super(context);
-        final ImageRecord imageRecord = new ImageRecord(path.getCanonicalPath());
-        final File debugDir = new File(path.getParentFile(), ".debug");
-        this.path = path;
+        final ImageRecord imageRecord = new ImageRecord(jpegFile.getCanonicalPath());
+        final File debugDir = new File(jpegFile.getParentFile(), ".debug");
         this.debugDir = debugDir.isDirectory() ? debugDir : null;
         this.compression = compression;
         final ImageRecord metadata = new KduExtractJNI().getMetadata(imageRecord);
-        System.out.println("DjatokaPlanePyramidSource: " + metadata);
         this.dimX = metadata.getWidth();
         this.dimY = metadata.getHeight();
+        this.elementType = byte.class;
         this.bandCount = 3;
+        //TODO!! - maybe there are better solutions
         this.numberOfResolutions = PlanePyramidTools.numberOfResolutions(dimX, dimY, compression, 1024);
         this.dimensions = new long[numberOfResolutions][3];
+        debug(1, "Djatoka reader opens image %s: %s[], %d bands, %dx%d; compression: %s; metadata:%n%s%n",
+            jpegFile, elementType, bandCount, dimX, dimY, compression, metadata);
 
-        long dimX = this.dimX, dimY = this.dimY;
+        long lastDimX = this.dimX;
+        long lastDimY = this.dimY;
         for (final long[] dimension : dimensions) {
             dimension[0] = 3;
-            dimension[1] = dimX;
-            dimension[2] = dimY;
-            dimX /= compression;
-            dimY /= compression;
+            dimension[1] = lastDimX;
+            dimension[2] = lastDimY;
+            lastDimX /= compression;
+            lastDimY /= compression;
         }
 
         this.decodeParam = new DjatokaDecodeParam();
@@ -81,6 +84,11 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
     }
 
     @Override
+    public int compression() {
+        return compression;
+    }
+
+    @Override
     public int bandCount() {
         return bandCount;
     }
@@ -94,22 +102,9 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
     protected Matrix<? extends PArray> readLittleSubMatrix(
         int resolutionLevel, long fromX, long fromY, long toX, long toY)
     {
-        synchronized (lock) {
-            try {
-                return pyramidLittleSubMatrix0(resolutionLevel, fromX, fromY, toX, toY);
-            } catch (DjatokaException e) {
-                e.printStackTrace();
-                throw new IOError(new IOException(e.getClass().getName() + ": " + e.getMessage()));
-            }
-        }
-    }
-
-    private Matrix<? extends PArray> pyramidLittleSubMatrix0(
-        int resolutionLevel, long fromX, long fromY, long toX, long toY) throws DjatokaException
-    {
         final long[] dim = dimensions(resolutionLevel);
-        final long dimX = dim[1];
-        final long dimY = dim[2];
+        final long dimX = dim[DIM_WIDTH];
+        final long dimY = dim[DIM_HEIGHT];
 
         if (fromX < 0 || fromY < 0 || fromX > toX || fromY > toY || toX > dimX || toY > dimY) {
             throw new IndexOutOfBoundsException("Illegal fromX/fromY/toX/toY: must be in ranges 0.."
@@ -122,46 +117,51 @@ public class DjatokaPlanePyramidSource extends AbstractPlanePyramidSource {
         }
         final int sizeX = (int) (toX - fromX);
         final int sizeY = (int) (toY - fromY);
-
-        final int levelReductionFactor = resolutionLevel * 2;
-        final int fixReduce = 1 << levelReductionFactor;
-        final String region = fromY * fixReduce + "," + fromX * fixReduce + "," + sizeY + "," + sizeX;
-
-        decodeParam.setLevelReductionFactor(levelReductionFactor);
-        decodeParam.setLevel(levelReductionFactor);
-        decodeParam.setRegion(region);
-        final BufferedImage image = processor.extract();
-        if (debugDir != null) {
+        synchronized (lock) {
             try {
-                ImageIO.write(image, "png", new File(debugDir, region + ".png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        final int[] data = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
-        final byte[] buff = new byte[data.length * bandCount];
-        for (int i = 0; i < data.length; i++) {
-            final int c = data[i];
-            final int k = i * bandCount;
-            for (int j = 0; j < bandCount; j++) {
-                final int b;
-                switch (j) {
-                    case 0:
-                        b = c >> 16;
-                        break;
-                    case 1:
-                        b = c >> 8;
-                        break;
-                    case 2:
-                        b = c;
-                        break;
-                    default:
-                        throw new AssertionError("Invalid bandCount: " + bandCount);
+                final int levelReductionFactor = resolutionLevel * 2;
+                final int fixReduce = 1 << levelReductionFactor;
+                final String region = fromY * fixReduce + "," + fromX * fixReduce + "," + sizeY + "," + sizeX;
+
+                decodeParam.setLevelReductionFactor(levelReductionFactor);
+                decodeParam.setLevel(levelReductionFactor);
+                decodeParam.setRegion(region);
+                final BufferedImage image = processor.extract();
+                if (debugDir != null) {
+                    try {
+                        ImageIO.write(image, "png", new File(debugDir, region + ".png"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                buff[k + j] = (byte) (b & 0xff);
+                final int[] data = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+                final byte[] buff = new byte[data.length * bandCount];
+                for (int i = 0; i < data.length; i++) {
+                    final int c = data[i];
+                    final int k = i * bandCount;
+                    for (int j = 0; j < bandCount; j++) {
+                        final int b;
+                        switch (j) {
+                            case 0:
+                                b = c >> 16;
+                                break;
+                            case 1:
+                                b = c >> 8;
+                                break;
+                            case 2:
+                                b = c;
+                                break;
+                            default:
+                                throw new AssertionError("Invalid bandCount: " + bandCount);
+                        }
+                        buff[k + j] = (byte) (b & 0xff);
+                    }
+                }
+                return Matrices.matrix(SimpleMemoryModel.asUpdatableByteArray(buff), bandCount, sizeX, sizeY);
+            } catch (DjatokaException e) {
+                throw new IOError(PlanePyramidTools.rmiSafeWrapper(e));
             }
         }
-        return Matrices.matrix(SimpleMemoryModel.asUpdatableByteArray(buff), bandCount, sizeX, sizeY);
     }
 
 }
