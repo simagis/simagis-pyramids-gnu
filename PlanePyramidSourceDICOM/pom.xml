@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.simagis</groupId>
             <artifactId>simagis-plane-pyramid-sdk</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>dcm4che</groupId>
@@ -58,6 +58,10 @@
         <repository>
             <id>simagis-open-releases</id>
             <url>http://simagis.artifactoryonline.com/simagis/open-releases-local</url>
+        </repository>
+        <repository>
+            <id>simagis-open-ext-releases</id>
+            <url>http://simagis.artifactoryonline.com/simagis/open-ext-releases-local</url>
         </repository>
     </repositories>
 </project>

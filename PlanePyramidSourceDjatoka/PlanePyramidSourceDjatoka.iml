@@ -12,7 +12,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: net.algart:algart:1.2" level="project" />
-    <orderEntry type="library" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext:json:0.1" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext.djatoka:adore-djatoka:1.1" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext.djatoka:kdu_jni:0.1" level="project" />
