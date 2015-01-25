@@ -17,7 +17,8 @@
     ],
     "defaultDataFile": "data.loci",
     "viewer": {
-        "planePyramidSourceFactory": "com.simagis.pyramid.loci.server.LociPlanePyramidSourceFactory"
+        "planePyramidSourceFactory": "com.simagis.pyramid.loci.server.LociPlanePyramidSourceFactory",
+        "alwaysUseForDefaultFileName": true
     },
     "uploaders": [
         {
