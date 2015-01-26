@@ -9,8 +9,8 @@ if not exist %liveJarFolder%\PlanePyramid.jar (
 echo Installing additional Simagis Live modules
 echo Already installed Simagis Live libraries %liveJarFolder%\*.jar will be used
 FOR /D /r %%G in (".*") DO (
-    echo %%~nxG
-    if exist \pathogensRoot\%%~nxG\jre (
+    echo Installing \pathogensRoot\%%~nxG
+    IF EXIST \pathogensRoot\%%~nxG\jre (
         rmdir \pathogensRoot\%%~nxG\jre
     )
     xcopy /I/E/Y %%~nxG \pathogensRoot\%%~nxG >nul
@@ -19,6 +19,11 @@ FOR /D /r %%G in (".*") DO (
         mklink /J \pathogensRoot\%%~nxG\jre "%jre86%"
     ) ELSE (
         mklink /J \pathogensRoot\%%~nxG\jre "%jre64%"
+    )
+    IF EXIST \pathogensRoot\%%~nxG\install_additions.cmd (
+        PUSHD \pathogensRoot\%%~nxG
+        CALL install_additions.cmd
+        POPD
     )
 )
 echo:

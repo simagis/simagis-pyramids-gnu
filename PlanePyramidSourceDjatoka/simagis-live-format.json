@@ -16,7 +16,6 @@
         "-Xms256m",
         "-Xmx600m"
     ],
-    "binPath": "bin/Win32",
     "defaultDataFile": "data.jp2",
     "viewer": {
         "planePyramidSourceFactory": "com.simagis.pyramid.djatoka.server.DjatokaPlanePyramidSourceFactory"
