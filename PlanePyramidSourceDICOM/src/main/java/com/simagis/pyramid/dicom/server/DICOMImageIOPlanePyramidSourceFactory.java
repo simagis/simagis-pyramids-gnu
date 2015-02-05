@@ -2,7 +2,7 @@ package com.simagis.pyramid.dicom.server;
 
 import com.simagis.live.json.minimal.SimagisLiveUtils;
 import com.simagis.pyramid.PlanePyramidSourceFactory;
-import com.simagis.pyramid.minimal.ImageIOPlanePyramidSource;
+import com.simagis.pyramid.sources.ImageIOPlanePyramidSource;
 import com.simagis.pyramid.PlanePyramidSource;
 import org.json.JSONObject;
 
