@@ -11,7 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: net.algart:algart:1.2" level="project" />
+    <orderEntry type="library" name="Maven: net.algart:algart:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext:json:0.1" level="project" />
     <orderEntry type="library" name="Maven: com.simagis:simagis-plane-pyramid-sdk:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: ome:loci_tools:5.0.6" level="project" />
@@ -40,7 +40,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.sun:tools:1.4.2">
         <CLASSES>
-          <root url="jar://C:/Program Files (x86)/Java/jdk1.7.0_71/lib/tools.jar!/" />
+          <root url="jar://C:/Program Files (x86)/Java/jdk1.7.0_76/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
