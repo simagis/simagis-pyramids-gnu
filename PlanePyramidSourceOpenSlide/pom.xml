@@ -15,9 +15,9 @@
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>com.simagis</groupId>
+            <groupId>net.algart.simagis</groupId>
             <artifactId>simagis-plane-pyramid-sdk</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>net.simagis.ext.openslide</groupId>

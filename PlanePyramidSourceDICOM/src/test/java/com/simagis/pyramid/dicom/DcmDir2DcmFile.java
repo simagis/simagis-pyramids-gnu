@@ -1,6 +1,6 @@
 package com.simagis.pyramid.dicom;
 
-import com.simagis.live.json.minimal.SimagisLiveUtils;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
 import org.dcm4che2.data.*;
 import org.dcm4che2.imageio.plugins.dcm.DicomStreamMetaData;
 import org.dcm4che2.imageioimpl.plugins.dcm.DicomImageWriterSpi;

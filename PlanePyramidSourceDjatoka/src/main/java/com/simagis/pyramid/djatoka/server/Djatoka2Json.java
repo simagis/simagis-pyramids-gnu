@@ -1,7 +1,7 @@
 package com.simagis.pyramid.djatoka.server;
 
-import com.simagis.live.json.minimal.SimagisLiveUtils;
 import com.simagis.pyramid.djatoka.DjatokaPlanePyramidSource;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 

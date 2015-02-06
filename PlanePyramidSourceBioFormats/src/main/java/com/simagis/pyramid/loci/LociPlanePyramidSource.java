@@ -24,8 +24,8 @@
 
 package com.simagis.pyramid.loci;
 
-import com.simagis.pyramid.PlanePyramidTools;
-import com.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidTools;
+import net.algart.simagis.pyramid.PlanePyramidSource;
 import loci.common.DataTools;
 import loci.formats.FormatException;
 import loci.formats.FormatTools;

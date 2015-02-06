@@ -1,6 +1,6 @@
 package com.simagis.pyramid.dicom.server;
 
-import com.simagis.imageio.IIOMetadataToJsonConverter;
+import net.algart.simagis.imageio.IIOMetadataToJsonConverter;
 import org.json.JSONException;
 import org.json.JSONObject;
 

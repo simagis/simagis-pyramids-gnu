@@ -24,12 +24,12 @@
 
 package com.simagis.pyramid.loci.server;
 
-import com.simagis.live.json.minimal.SimagisLiveUtils;
-import com.simagis.pyramid.PlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidSourceFactory;
-import com.simagis.pyramid.PlanePyramidTools;
 import com.simagis.pyramid.loci.LociPlanePyramidSource;
 import loci.formats.FormatException;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
+import net.algart.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSourceFactory;
+import net.algart.simagis.pyramid.PlanePyramidTools;
 import org.json.JSONObject;
 
 import java.io.File;

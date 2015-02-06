@@ -24,14 +24,14 @@
 
 package com.simagis.pyramid.loci.server;
 
-import com.simagis.live.json.minimal.SimagisLiveUtils;
-import com.simagis.pyramid.PlanePyramidSource;
 import com.simagis.pyramid.loci.LociPlanePyramidSource;
 import loci.formats.IFormatReader;
 import loci.formats.ImageReader;
 import net.algart.arrays.Matrix;
 import net.algart.arrays.PArray;
 import net.algart.external.MatrixToBufferedImageConverter;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
+import net.algart.simagis.pyramid.PlanePyramidSource;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

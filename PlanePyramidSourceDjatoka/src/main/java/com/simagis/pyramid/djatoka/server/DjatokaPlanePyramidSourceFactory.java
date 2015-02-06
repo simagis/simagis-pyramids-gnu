@@ -1,11 +1,11 @@
 package com.simagis.pyramid.djatoka.server;
 
-import com.simagis.live.json.minimal.SimagisLiveUtils;
-import com.simagis.pyramid.PlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidSourceFactory;
-import com.simagis.pyramid.PlanePyramidTools;
 import com.simagis.pyramid.djatoka.DjatokaPlanePyramidSource;
 import gov.lanl.adore.djatoka.DjatokaException;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
+import net.algart.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSourceFactory;
+import net.algart.simagis.pyramid.PlanePyramidTools;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,8 +1,8 @@
 package com.simagis.pyramid.openslide.server;
 
-import com.simagis.pyramid.PlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidSourceFactory;
 import com.simagis.pyramid.openslide.OpenSlidePlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSourceFactory;
 
 import java.awt.*;
 import java.io.File;

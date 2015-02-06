@@ -1,7 +1,7 @@
 package com.simagis.pyramid.dicom.server;
 
-import com.simagis.pyramid.PlanePyramidSource;
-import com.simagis.pyramid.sources.ImageIOPlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.sources.ImageIOPlanePyramidSource;
 import org.dcm4che2.imageio.plugins.dcm.DicomImageReadParam;
 
 import javax.imageio.ImageReadParam;

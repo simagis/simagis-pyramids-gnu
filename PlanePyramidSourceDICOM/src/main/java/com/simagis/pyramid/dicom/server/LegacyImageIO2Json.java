@@ -1,7 +1,7 @@
 package com.simagis.pyramid.dicom.server;
 
-import com.simagis.imageio.IIOMetadataToJsonConverter;
-import com.simagis.live.json.minimal.SimagisLiveUtils;
+import net.algart.simagis.imageio.IIOMetadataToJsonConverter;
+import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 

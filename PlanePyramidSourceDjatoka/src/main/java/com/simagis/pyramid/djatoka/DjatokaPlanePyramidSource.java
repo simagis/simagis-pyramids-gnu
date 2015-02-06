@@ -1,13 +1,13 @@
 package com.simagis.pyramid.djatoka;
 
-import com.simagis.pyramid.AbstractPlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidTools;
 import gov.lanl.adore.djatoka.DjatokaDecodeParam;
 import gov.lanl.adore.djatoka.DjatokaException;
 import gov.lanl.adore.djatoka.kdu.jni.KduExtractJNI;
 import gov.lanl.adore.djatoka.kdu.jni.KduExtractProcessorJNI;
 import gov.lanl.adore.djatoka.util.ImageRecord;
 import net.algart.arrays.*;
+import net.algart.simagis.pyramid.AbstractPlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidTools;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

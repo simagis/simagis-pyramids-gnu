@@ -1,9 +1,9 @@
 package com.simagis.pyramid.openslide;
 
-import com.simagis.pyramid.AbstractPlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidSource;
-import com.simagis.pyramid.PlanePyramidTools;
 import net.algart.arrays.*;
+import net.algart.simagis.pyramid.AbstractPlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidSource;
+import net.algart.simagis.pyramid.PlanePyramidTools;
 
 import java.awt.*;
 import java.io.File;
