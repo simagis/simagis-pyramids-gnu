@@ -18,7 +18,8 @@
     ],
     "defaultDataFile": "data.jp2",
     "viewer": {
-        "planePyramidSourceFactory": "com.simagis.pyramid.djatoka.server.DjatokaPlanePyramidSourceFactory"
+        "planePyramidSourceFactory": "com.simagis.pyramid.djatoka.server.DjatokaPlanePyramidSourceFactory",
+        "alwaysUseForDefaultFileName": true
     },
     "uploaders": [
         {
