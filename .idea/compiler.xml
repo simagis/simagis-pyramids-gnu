@@ -28,5 +28,11 @@
         <module name="PlanePyramidSourceOpenSlide" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PlanePyramidSourceBioFormats" target="1.5" />
+      <module name="PlanePyramidSourceDICOM" target="1.5" />
+      <module name="PlanePyramidSourceDjatoka" target="1.5" />
+      <module name="PlanePyramidSourceOpenSlide" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

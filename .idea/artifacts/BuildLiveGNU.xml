@@ -7,7 +7,7 @@
         <element id="directory" name="bio-formats">
           <element id="library" level="project" name="Maven: ome:loci_tools:5.0.6" />
         </element>
-        <element id="library" level="project" name="Maven: net.algart:algart:1.2.1" />
+        <element id="library" level="project" name="Maven: net.algart:algart:1.2.3" />
         <element id="directory" name="LivePyramid">
           <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" output-file-name="readme.txt" />
         </element>
@@ -15,7 +15,7 @@
         <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceBioFormats/simagis-live-format.json" />
         <element id="directory" name="LiveAPI">
-          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.1.1" />
+          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.1" />
         </element>
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/install-pp-gnu.cmd" />
@@ -30,7 +30,7 @@
         <element id="directory" name="LivePyramid">
           <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" output-file-name="readme.txt" />
         </element>
-        <element id="library" level="project" name="Maven: net.algart:algart:1.2.1" />
+        <element id="library" level="project" name="Maven: net.algart:algart:1.2.3" />
         <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
         <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDICOM/simagis-live-format.json" />
@@ -42,19 +42,19 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-nop:1.6.1" />
         </element>
         <element id="directory" name="LiveAPI">
-          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.1.1" />
+          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.1" />
         </element>
       </element>
       <element id="directory" name=".djatoka">
         <element id="artifact" artifact-name="PlanePyramidSourceDjatoka:jar" />
         <element id="directory" name="LiveAPI">
-          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.1.1" />
+          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.1" />
         </element>
         <element id="directory" name="LivePyramid">
           <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" output-file-name="readme.txt" />
         </element>
         <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
-        <element id="library" level="project" name="Maven: net.algart:algart:1.2.1" />
+        <element id="library" level="project" name="Maven: net.algart:algart:1.2.3" />
         <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
         <element id="directory" name="djatoka">
           <element id="library" level="project" name="Maven: net.simagis.ext.djatoka:adore-djatoka-full-archive:1.1" />
