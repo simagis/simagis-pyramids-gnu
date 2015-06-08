@@ -22,7 +22,7 @@
         <dependency>
             <groupId>net.algart.simagis</groupId>
             <artifactId>simagis-plane-pyramid-sdk</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.4</version>
         </dependency>
         <dependency>
             <groupId>ome</groupId>

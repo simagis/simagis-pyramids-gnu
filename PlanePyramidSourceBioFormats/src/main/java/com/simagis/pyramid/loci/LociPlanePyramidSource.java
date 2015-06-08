@@ -24,6 +24,7 @@
 
 package com.simagis.pyramid.loci;
 
+import net.algart.math.IRectangularArea;
 import net.algart.simagis.pyramid.PlanePyramidTools;
 import net.algart.simagis.pyramid.PlanePyramidSource;
 import loci.common.DataTools;
@@ -300,6 +301,10 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
         largeData.freeResources();
     }
 
+    public String additionalMetadata() {
+        return null;
+    }
+
     public boolean isFullMatrixSupported() {
         return context() != null;
     }
@@ -326,6 +331,11 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
         int resolutionLevel = numberOfResolutions() - 1;
         final long[] dimensions = dimensions(resolutionLevel);
         return readSubMatrix(resolutionLevel, 0, 0, dimensions[DIM_WIDTH], dimensions[DIM_HEIGHT]);
+    }
+
+
+    public List<IRectangularArea> zeroLevelActualRectangles() {
+        return null;
     }
 
     @Override
