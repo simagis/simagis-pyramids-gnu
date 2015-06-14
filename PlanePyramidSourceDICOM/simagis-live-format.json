@@ -2,7 +2,7 @@
     "title": "DICOM",
     "classPath": [
         "algart-1.2.3.jar",
-        "LiveAPI/simagis-plane-pyramid-sdk-1.2.5.jar",
+        "LiveAPI/simagis-plane-pyramid-sdk-1.2.6.jar",
         "LivePyramid/*",
         "dcm4che/dcm4che-core-2.0.28.jar",
         "dcm4che/dcm4che-image-2.0.28.jar",
