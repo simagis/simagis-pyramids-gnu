@@ -24,6 +24,7 @@
 
 package com.simagis.pyramid.loci;
 
+import net.algart.math.IPoint;
 import net.algart.math.IRectangularArea;
 import net.algart.simagis.pyramid.PlanePyramidTools;
 import net.algart.simagis.pyramid.PlanePyramidSource;
@@ -335,6 +336,10 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
 
 
     public List<IRectangularArea> zeroLevelActualRectangles() {
+        return null;
+    }
+
+    public List<List<List<IPoint>>> zeroLevelActualAreaBoundaries() {
         return null;
     }
 
