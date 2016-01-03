@@ -14,7 +14,7 @@
         "-ea",
         "-esa",
         "-Xms256m",
-        "-Xmx600m"
+        "-86Xmx700m"
     ],
     "defaultDataFile": "data.jp2",
     "viewer": {
