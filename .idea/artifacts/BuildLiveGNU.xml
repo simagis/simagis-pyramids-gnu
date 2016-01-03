@@ -63,7 +63,7 @@
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDjatoka/simagis-live-format.json" />
         <element id="directory" name="x86">
-          <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/.keep" />
+          <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/.keep" output-file-name=".only86" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDjatoka/install_additions.cmd" />
       </element>

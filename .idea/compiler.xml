@@ -29,10 +29,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="PlanePyramidSourceBioFormats" target="" />
-      <module name="PlanePyramidSourceDICOM" target="" />
-      <module name="PlanePyramidSourceDjatoka" target="" />
-      <module name="PlanePyramidSourceOpenSlide" target="" />
+      <module name="PlanePyramidSourceBioFormats" target="1.6" />
+      <module name="PlanePyramidSourceDICOM" target="1.6" />
+      <module name="PlanePyramidSourceDjatoka" target="1.6" />
+      <module name="PlanePyramidSourceOpenSlide" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
