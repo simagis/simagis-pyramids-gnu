@@ -13,15 +13,18 @@ FOR /D  %%G in ("%ProgramFiles(x86)%\Java\jre1.8*.*") DO (
     set jre_8_86_found=true
 )
 IF NOT %jre_8_64_found%==true (
-    echo Java-x86 SDK 1.8 NOT FOUND!
-    echo Trying to use "%jre64%"
-    echo:
+    echo Java-x64 SDK 1.8 NOT FOUND! Trying to use "%jre64%"
 )
 IF NOT %jre_8_86_found%==true (
-    echo Java-x64 SDK 1.8 NOT FOUND!
-    echo Trying to use "%jre86%"
-    echo:
+    echo Java-x86 SDK 1.8 NOT FOUND! Trying to use "%jre86%"
 )
+set java="%jre64%\bin\java.exe"
+IF NOT EXIST %java% set java="%jre86%\bin\java.exe"
+IF NOT EXIST %java% (
+    echo Java not found!
+    goto end
+)
+echo Java found at %java%
 set liveJarFolder=\pathogensRoot\.imageIO\LivePyramid
 if not exist %liveJarFolder%\PlanePyramid.jar (
     echo Standard Live module \pathogensRoot\.imageIO\ is not installed properly

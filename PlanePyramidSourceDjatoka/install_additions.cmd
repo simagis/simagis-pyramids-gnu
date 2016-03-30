@@ -1,5 +1,4 @@
 @echo off
-set java="%ProgramFiles(x86)%\Java\jre7\bin\java.exe"
 set cp=LiveAPI/simagis-plane-pyramid-sdk-1.2.10.jar
 set class=net.algart.simagis.executable.installer.ZipExtractor
 set jar=djatoka\adore-djatoka-full-archive-1.1.jar
