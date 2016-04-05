@@ -2,7 +2,7 @@
     "title": "Djatoka JPEG 2000",
     "classPath": [
         "algart-1.2.7.jar",
-        "LiveAPI/simagis-plane-pyramid-sdk-1.2.10.jar",
+        "LiveAPI/simagis-plane-pyramid-sdk-1.2.13.jar",
         "LivePyramid/*",
         "djatoka/adore-djatoka-1.1.jar",
         "djatoka/kdu_jni-0.1.jar",

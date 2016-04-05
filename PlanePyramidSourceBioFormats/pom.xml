@@ -17,7 +17,7 @@
         <dependency>
             <groupId>net.algart.simagis</groupId>
             <artifactId>simagis-plane-pyramid-sdk</artifactId>
-            <version>1.2.10</version>
+            <version>1.2.13</version>
         </dependency>
         <dependency>
             <groupId>net.simagis.ext</groupId>
@@ -28,6 +28,28 @@
             <groupId>ome</groupId>
             <artifactId>loci_tools</artifactId>
             <version>5.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>net.algart.pyramid</groupId>
+            <artifactId>pyramid-common</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.algart.pyramid</groupId>
+            <artifactId>pyramid-http</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.0.4</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
