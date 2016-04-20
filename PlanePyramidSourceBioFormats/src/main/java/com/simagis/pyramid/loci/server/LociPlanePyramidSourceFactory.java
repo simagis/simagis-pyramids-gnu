@@ -77,8 +77,8 @@ public class LociPlanePyramidSourceFactory implements PlanePyramidSourceFactory 
             path = new File(path, fileName);
         }
         Boolean flattenedResolutions = null;
-        if (pyramidJson.has("flattenedResolutions")) {
-            flattenedResolutions = pyramidJson.optBoolean("flattenedResolutions");
+        if (lociJson.has("flattenedResolutions")) {
+            flattenedResolutions = lociJson.optBoolean("flattenedResolutions");
         }
         int imagePlaneIndex = multilayerZCT.has("imagePlaneIndex")
             ? multilayerZCT.optInt("imagePlaneIndex") : lociJson.has("imagePlaneIndex")
