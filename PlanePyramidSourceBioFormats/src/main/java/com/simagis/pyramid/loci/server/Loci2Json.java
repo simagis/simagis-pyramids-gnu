@@ -32,7 +32,7 @@ public class Loci2Json {
             result.put("formatChecked", true);
             if (LociPlanePyramidSource.isLociFile(file) && !file.getName().toLowerCase().endsWith(".zip")) {
                 // Loci tries to "understand" usual zip-files and usually it leads to a strange error message
-                final LociPlanePyramidSource source = new LociPlanePyramidSource(null, file);
+                final LociPlanePyramidSource source = new LociPlanePyramidSource(null, file, null, null, null);
                 final long[] dimensions = source.dimensions(0);
                 result.put("dimX", dimensions[PlanePyramidSource.DIM_WIDTH]);
                 result.put("dimY", dimensions[PlanePyramidSource.DIM_HEIGHT]);

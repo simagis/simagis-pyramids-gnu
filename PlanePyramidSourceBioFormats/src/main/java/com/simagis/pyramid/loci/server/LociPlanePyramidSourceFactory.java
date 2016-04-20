@@ -31,11 +31,23 @@ import net.algart.simagis.pyramid.PlanePyramidSource;
 import net.algart.simagis.pyramid.PlanePyramidSourceFactory;
 import net.algart.simagis.pyramid.PlanePyramidTools;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class LociPlanePyramidSourceFactory implements PlanePyramidSourceFactory {
+    static {
+        try {
+            ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger)
+                LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+            root.setLevel(ch.qos.logback.classic.Level.ERROR);
+        } catch (Throwable e) {
+            // maybe, this version is compatible
+        }
+    }
+
     @Override
     public PlanePyramidSource newPlanePyramidSource(
         String pyramidPath,
@@ -64,13 +76,17 @@ public class LociPlanePyramidSourceFactory implements PlanePyramidSourceFactory 
             path = new File(path, "data");
             path = new File(path, fileName);
         }
+        Boolean flattenedResolutions = null;
+        if (pyramidJson.has("flattenedResolutions")) {
+            flattenedResolutions = pyramidJson.optBoolean("flattenedResolutions");
+        }
         int imagePlaneIndex = multilayerZCT.has("imagePlaneIndex")
             ? multilayerZCT.optInt("imagePlaneIndex") : lociJson.has("imagePlaneIndex")
             ? lociJson.optInt("imagePlaneIndex") : -1;
         // - lociJson.optInt above necessary to support formats before 28.Oct.2014
         LociPlanePyramidSource result;
         try {
-            result = new LociPlanePyramidSource(null, path);
+            result = new LociPlanePyramidSource(null, path, null, null, flattenedResolutions);
         } catch (FormatException e) {
             throw PlanePyramidTools.rmiSafeWrapper(e);
         }
