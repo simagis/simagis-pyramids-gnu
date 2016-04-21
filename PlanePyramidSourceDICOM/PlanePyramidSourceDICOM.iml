@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Maven: net.algart:algart:1.2.7" level="project" />
     <orderEntry type="library" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.13" level="project" />
     <orderEntry type="library" name="Maven: net.algart.simagis:simagis-plane-pyramid-common:1.2.13" level="project" />
+    <orderEntry type="library" name="Maven: net.algart.simagis:simagis-plane-pyramid-executable:1.2.13" level="project" />
     <orderEntry type="library" name="Maven: net.simagis.ext:json:0.1" level="project" />
     <orderEntry type="library" name="Maven: dcm4che:dcm4che-imageio:2.0.28" level="project" />
     <orderEntry type="library" name="Maven: dcm4che:dcm4che-core:2.0.28" level="project" />

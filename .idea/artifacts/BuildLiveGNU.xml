@@ -66,6 +66,7 @@
           <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/.keep" output-file-name=".only86" />
         </element>
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDjatoka/install_additions.cmd" />
+        <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-executable:1.2.13" />
       </element>
     </root>
   </artifact>
