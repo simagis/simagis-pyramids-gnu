@@ -30,20 +30,9 @@
             <version>5.0.6</version>
         </dependency>
         <dependency>
-            <groupId>net.algart.pyramid</groupId>
-            <artifactId>pyramid-common</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-        <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.algart.pyramid</groupId>
-            <artifactId>pyramid-http</artifactId>
-            <version>1.0.1</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
