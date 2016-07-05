@@ -1,24 +1,20 @@
 {
-    "title": "Djatoka JPEG 2000",
+    "title": "OpenSlide family",
     "classPath": [
         "algart-1.2.7.jar",
         "LiveAPI/simagis-plane-pyramid-sdk-1.2.15.jar",
         "LivePyramid/*",
-        "djatoka/adore-djatoka-1.1.jar",
-        "djatoka/kdu_jni-0.1.jar",
         "log4j-1.2.17.jar",
         "json-0.1.jar",
-        "PlanePyramidSourceDjatoka.jar"
+        "PlanePyramidSourceOpenSlide:jar"
     ],
     "vmOptions": [
         "-ea",
-        "-esa",
-        "-Xms256m",
-        "-86Xmx700m"
+        "-esa"
     ],
-    "defaultDataFile": "data.jp2",
+    "defaultDataFile": "data.openslide",
     "viewer": {
-        "planePyramidSourceFactory": "com.simagis.pyramid.djatoka.server.DjatokaPlanePyramidSourceFactory",
+        "planePyramidSourceFactory": "com.simagis.pyramid.openslide.server.OpenSlidePyramidSourceFactory",
         "alwaysUseForDefaultFileName": true
     },
     "uploaders": [
@@ -27,10 +23,11 @@
             "formatDetection": {
                 "method": "extension",
                 "extensions": [
-                    "jp2"
+                    "openslide",
+                    "os"
                 ]
             },
-            "extractingMetadataUtility": "com.simagis.pyramid.djatoka.server.Djatoka2Json"
+            "extractingMetadataUtility": "com.simagis.pyramid.openslide.server.OpenSlide2Json"
         }
     ]
 }

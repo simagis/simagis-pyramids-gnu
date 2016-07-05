@@ -22,6 +22,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="OpenSlide" />
         <module name="PlanePyramidSourceBioFormats" />
         <module name="PlanePyramidSourceDICOM" />
         <module name="PlanePyramidSourceDjatoka" />
@@ -29,6 +30,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="OpenSlide" target="1.8" />
       <module name="PlanePyramidSourceBioFormats" target="1.8" />
       <module name="PlanePyramidSourceDICOM" target="1.8" />
       <module name="PlanePyramidSourceDjatoka" target="1.8" />

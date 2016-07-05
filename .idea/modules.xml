@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LiveInstaller/LiveInstaller.iml" filepath="$PROJECT_DIR$/LiveInstaller/LiveInstaller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OpenSlide/OpenSlide.iml" filepath="$PROJECT_DIR$/OpenSlide/OpenSlide.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceBioFormats/PlanePyramidSourceBioFormats.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceBioFormats/PlanePyramidSourceBioFormats.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceDICOM/PlanePyramidSourceDICOM.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceDICOM/PlanePyramidSourceDICOM.iml" />
       <module fileurl="file://$PROJECT_DIR$/PlanePyramidSourceDjatoka/PlanePyramidSourceDjatoka.iml" filepath="$PROJECT_DIR$/PlanePyramidSourceDjatoka/PlanePyramidSourceDjatoka.iml" />

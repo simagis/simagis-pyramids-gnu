@@ -2,7 +2,7 @@
     "title": "Loci Bio-format family",
     "classPath": [
         "algart-1.2.7.jar",
-        "LiveAPI/simagis-plane-pyramid-sdk-1.2.13.jar",
+        "LiveAPI/simagis-plane-pyramid-sdk-1.2.15.jar",
         "LivePyramid/*",
         "bio-formats/loci_tools-5.0.6.jar",
         "log4j-1.2.17.jar",

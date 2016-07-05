@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlanePyramidSourceOpenSlide:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PlanePyramidSourceOpenSlide_jar</output-path>
+    <root id="archive" name="PlanePyramidSourceOpenSlide.jar">
+      <element id="module-output" name="PlanePyramidSourceOpenSlide" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/simagis/ext/json/0.1/json-0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/algart/algart/1.2.7/algart-1.2.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/simagis/ext/openslide/OpenSlideJava/0.1/OpenSlideJava-0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/algart/simagis/simagis-plane-pyramid-sdk/1.2.15/simagis-plane-pyramid-sdk-1.2.15.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

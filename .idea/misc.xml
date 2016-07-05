@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/PlanePyramidSourceOpenSlide/pom.xml" />
         <option value="$PROJECT_DIR$/PlanePyramidSourceDICOM/pom.xml" />
         <option value="$PROJECT_DIR$/PlanePyramidSourceDjatoka/pom.xml" />
+        <option value="$PROJECT_DIR$/OpenSlide/pom.xml" />
       </list>
     </option>
   </component>

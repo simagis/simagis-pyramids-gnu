@@ -5,26 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.simagis.pyramid</groupId>
-    <artifactId>plane-pyramid-openslide</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.algart</groupId>
-            <artifactId>algart</artifactId>
-            <version>1.2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>net.algart.simagis</groupId>
-            <artifactId>simagis-plane-pyramid-sdk</artifactId>
-            <version>1.2.15</version>
-        </dependency>
-        <dependency>
-            <groupId>net.simagis.ext.openslide</groupId>
-            <artifactId>OpenSlideJava</artifactId>
-            <version>0.1</version>
-        </dependency>
-    </dependencies>
+    <artifactId>openslide</artifactId>
+    <version>0.12.1</version>
 
     <build>
         <plugins>
@@ -51,4 +33,5 @@
             <url>http://simagis.artifactoryonline.com/simagis/open-ext-releases-local</url>
         </repository>
     </repositories>
+
 </project>
