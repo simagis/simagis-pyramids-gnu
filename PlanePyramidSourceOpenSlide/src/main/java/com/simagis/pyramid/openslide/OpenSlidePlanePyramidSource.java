@@ -4,6 +4,7 @@ import net.algart.arrays.*;
 import net.algart.simagis.pyramid.AbstractPlanePyramidSource;
 import net.algart.simagis.pyramid.PlanePyramidSource;
 import net.algart.simagis.pyramid.PlanePyramidTools;
+import org.openslide.OpenSlide;
 
 import java.awt.*;
 import java.io.File;
@@ -15,40 +16,32 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSource implements PlanePyramidSource {
-    private static final boolean DISABLE_BACKGROUND_FOR_LITTLE_HOLES = Arrays.SystemSettings.getBooleanProperty(
-        "com.simagis.pyramid.openslide.disableBackgroundForLittleHoles", false);
-    // not enough tool for blocking Moire phenomenon - not used now
-
     private static final int DEBUG_LEVEL = 1;
     private static final double INV_255 = 1.0 / 255.0;
 
-    private final File svsFile;
+    private final File imageFile;
     private final int compression;
     private final int numberOfResolutions;
     private final boolean useAlphaForBackground;
     private final int backgroundRed, backgroundGreen, backgroundBlue; //0..255
     private final int maxAlphaForEnforcingBackground; // if alpha < this value, we always use our background
-    private final long totalDimX;
-    private final long totalDimY;
+    private final long dimX;
+    private final long dimY;
     private final int bandCount;
     private final List<long[]> dimensions;
     private final LargeDataHolder largeData = new LargeDataHolder();
 
-    public OpenSlidePlanePyramidSource(File svsFile) throws IOException {
-        this(null, svsFile, 0);
+    public OpenSlidePlanePyramidSource(File imageFile) throws IOException {
+        this(null, imageFile);
     }
 
     public OpenSlidePlanePyramidSource(ArrayContext context, File svsFile) throws IOException {
-        this(context, svsFile, 0);
-    }
-
-    public OpenSlidePlanePyramidSource(ArrayContext context, File svsFile, int compression) throws IOException {
-        this(context, svsFile, compression, null, 4096, 0.0);
+        this(context, svsFile, null, 4096, 0.0);
     }
 
     // compression=0 means automatic detection
     public OpenSlidePlanePyramidSource(
-        ArrayContext context, File svsFile, int compression,
+        ArrayContext context, File imageFile,
         Color backgroundColor,
         int minPyramidLevelSide,
         // - sometimes OpenSlide library tries to build extra small levels and does it incorrectly (moire phenomenon)
@@ -56,40 +49,37 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         throws IOException
     {
         super(context);
-        if (svsFile == null)
-            throw new NullPointerException("Null svsFile");
-        this.svsFile = svsFile;
+        if (imageFile == null) {
+            throw new NullPointerException("Null imageFile");
+        }
+        this.imageFile = imageFile;
         this.largeData.init();
         boolean success = false;
         try {
-            this.totalDimX = largeData.openSlide.getLevel0Width();
-            this.totalDimY = largeData.openSlide.getLevel0Height();
+            this.dimX = largeData.openSlide.getLevel0Width();
+            this.dimY = largeData.openSlide.getLevel0Height();
             this.bandCount = 3; // maybe, in future here will be better code
-            if (DEBUG_LEVEL >= 1) {
-                System.out.printf("OpenSlide opens image %s: %dx%d, %d bands%n",
-                    svsFile, totalDimX, totalDimY, bandCount);
-            }
-            long lastDimX = this.totalDimX;
-            long lastDimY = this.totalDimY;
+            debug(1, "OpenSlide opens image %s: %dx%d, %d bands%n",
+                imageFile, dimX, dimY, bandCount);
+            long lastDimX = this.dimX;
+            long lastDimY = this.dimY;
             int maxUsedNumberOfResolutions = Math.max(1, largeData.openSlide.getLevelCount());
             this.dimensions = new ArrayList<long[]>();
-            this.dimensions.add(new long[] {bandCount, this.totalDimX, this.totalDimY});
+            this.dimensions.add(new long[] {bandCount, this.dimX, this.dimY});
+            int compression = 0;
             for (int k = 1; k < maxUsedNumberOfResolutions; k++) {
                 final long newDimX = largeData.openSlide.getLevelWidth(k);
                 final long newDimY = largeData.openSlide.getLevelHeight(k);
-                if (DEBUG_LEVEL >= 1) {
-                    System.out.printf("OpenSlide checks layer #%d: %dx%d%n", k, newDimX, newDimY);
-                }
-                if (k == 1 && compression == 0) {
+                debug(1, "OpenSlide checks layer #%d: %dx%d%n", k, newDimX, newDimY);
+                if (compression == 0) {
                     compression = PlanePyramidTools.findCompression(
                         new long[] {bandCount, lastDimX, lastDimY},
                         new long[] {bandCount, newDimX, newDimY});
-                    if (compression == 0)
+                    if (compression == 0) {
                         throw new IllegalArgumentException("Cannot find suitable compression for first "
                             + "two levels " + lastDimX + "x" + lastDimY + " and " + newDimX + "x" + newDimY);
-                    if (DEBUG_LEVEL >= 1) {
-                        System.out.println("OpenSlide automatically detected compression " + compression);
                     }
+                    debug(1, "OpenSlide automatically detected compression %d%n", compression);
                 }
                 if (newDimX < minPyramidLevelSide && newDimY < minPyramidLevelSide) {
                     break;
@@ -105,7 +95,7 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
                 lastDimY = newDimY;
                 this.dimensions.add(new long[] {bandCount, newDimX, newDimY});
             }
-            this.compression = compression;
+            this.compression = compression == 0 ? PlanePyramidSource.DEFAULT_COMPRESSION : compression;
             this.numberOfResolutions = this.dimensions.size();
             this.useAlphaForBackground = backgroundColor != null;
             if (this.useAlphaForBackground) {
@@ -118,11 +108,9 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
                 this.backgroundBlue = -1;
             }
             this.maxAlphaForEnforcingBackground = (int) Math.round(maxAlphaForEnforcingBackground * 255.0);
-            if (DEBUG_LEVEL >= 1) {
-                System.out.println("OpenSlide found " + this.numberOfResolutions + " layers with correct compression"
-                    + " among " + largeData.openSlide.getLevelCount() + " total layers");
-                System.out.println("OpenSlide instantiating " + this);
-            }
+            debug(1, "OpenSlide found %d layers with correct compression among %d total layers%n",
+                this.numberOfResolutions, largeData.openSlide.getLevelCount());
+            debug(1, "OpenSlide instantiating %s%n", this);
             success = true;
         } finally {
             if (!success) {
@@ -131,6 +119,13 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         }
     }
 
+    public long getDimX() {
+        return dimX;
+    }
+
+    public long getDimY() {
+        return dimY;
+    }
 
     public int numberOfResolutions() {
         return numberOfResolutions;
@@ -169,10 +164,8 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         try {
             largeData.init();
             int[] packedData = new int[sizeX * sizeY];
-            if (DEBUG_LEVEL >= 2) {
-                System.out.printf("OpenSlide reading R%d: %d..%d x %d..%d%n",
-                    resolutionLevel, fromX, toX, fromY, toY);
-            }
+            debug(2, "OpenSlide reading R%d: %d..%d x %d..%d%n",
+                resolutionLevel, fromX, toX, fromY, toY);
             for (int level = 0; level < resolutionLevel; level++) {
                 // paintRegionARGB needs coordinates in terms of the zero level
                 fromX *= compression;
@@ -215,16 +208,6 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
                                     data[disp + 1] = (byte) backgroundGreen;
                                     data[disp + 2] = (byte) backgroundBlue;
                                     continue;
-                                }
-                                if (DISABLE_BACKGROUND_FOR_LITTLE_HOLES) {
-                                    boolean leftFF = x == 0 || (packedData[i - 1] >>> 24) == 0xFF;
-                                    boolean rightFF = x == sizeX - 1 || (packedData[i + 1] >>> 24) == 0xFF;
-                                    boolean upFF = y == 0 || (packedData[i - sizeX] >>> 24) == 0xFF;
-                                    boolean downFF = y == sizeY - 1 || (packedData[i + sizeX] >>> 24) == 0xFF;
-                                    boolean littleHole = (leftFF && rightFF) || (upFF && downFF);
-                                    if (littleHole) {
-                                        alpha = 0xFF;
-                                    }
                                 }
                                 int r = (v >>> 16) & 0xFF;
                                 int g = (v >>> 8) & 0xFF;
@@ -280,17 +263,15 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
     // the files will be reopened every time when PlanePyramid needs to read data and creates a clone for this.
     // LargeDataHolder class resolves all these problems, because the reference to it is shared among all clones.
     private class LargeDataHolder {
-        private volatile OpenSlideWrapper openSlide = null;
+        private volatile OpenSlide openSlide = null;
         private final Lock lock = new ReentrantLock();
 
         private void init() throws IOException {
             lock.lock();
             try {
                 if (openSlide == null) {
-                    if (DEBUG_LEVEL >= 1) {
-                        System.out.println("OpenSlide reinitializing " + this);
-                    }
-                    openSlide = new OpenSlideWrapper(svsFile);
+                        debug(1, "OpenSlide reinitializing %s%n", this);
+                    openSlide = new OpenSlide(imageFile);
                 }
             } finally {
                 lock.unlock();
@@ -301,9 +282,7 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
             lock.lock();
             try {
                 if (openSlide != null) {
-                    if (DEBUG_LEVEL >= 1) {
-                        System.out.println("OpenSlide disposing " + this);
-                    }
+                    debug(1, "OpenSlide disposing %s%n", this);
                     openSlide.dispose();
                     openSlide = null;
                 }
@@ -315,10 +294,8 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         @Override
         protected void finalize() throws Throwable {
             try {
-                if (DEBUG_LEVEL >= 1) {
-                    System.out.println("OpenSlide finalizing " + this);
-                }
-                OpenSlidePlanePyramidSource.this.freeResources(FlushMethod.STANDARD);
+                debug(1, "OpenSlide finalizing %s%n", this);
+                freeResources();
             } finally {
                 super.finalize();
             }

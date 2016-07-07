@@ -68,6 +68,22 @@
         <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceDjatoka/install_additions.cmd" />
         <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-executable:1.2.15" />
       </element>
+      <element id="directory" name=".openslide">
+        <element id="artifact" artifact-name="PlanePyramidSourceOpenSlide:jar" />
+        <element id="directory" name="openslide">
+          <element id="artifact" artifact-name="OpenSlide:jar" />
+        </element>
+        <element id="library" level="project" name="Maven: net.simagis.ext:json:0.1" />
+        <element id="library" level="project" name="Maven: net.algart:algart:1.2.7" />
+        <element id="directory" name="LiveAPI">
+          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.15" />
+        </element>
+        <element id="directory" name="LivePyramid">
+          <element id="file-copy" path="$PROJECT_DIR$/LiveInstaller/readme.live.txt" output-file-name="readme.txt" />
+        </element>
+        <element id="file-copy" path="$PROJECT_DIR$/PlanePyramidSourceOpenSlide/simagis-live-format.json" />
+        <element id="dir-copy" path="$PROJECT_DIR$/OpenSlide/redist/openslide-win64-20160612/bin" />
+      </element>
     </root>
   </artifact>
 </component>

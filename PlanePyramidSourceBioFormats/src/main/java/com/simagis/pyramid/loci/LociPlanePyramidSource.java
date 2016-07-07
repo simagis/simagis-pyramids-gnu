@@ -90,7 +90,7 @@ public final class LociPlanePyramidSource extends AbstractArrayProcessorWithCont
     {
         super(context);
         if (imageFile == null) {
-            throw new NullPointerException("Null svsFile");
+            throw new NullPointerException("Null imageFile");
         }
         if (requiredSeries != null && requiredSeries < 0) {
             throw new IllegalArgumentException("Negative requires series");
