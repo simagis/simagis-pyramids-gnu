@@ -2,12 +2,13 @@ package com.simagis.pyramid.openslide.server;
 
 import com.simagis.pyramid.openslide.OpenSlidePlanePyramidSource;
 import net.algart.simagis.live.json.minimal.SimagisLiveUtils;
-import net.algart.simagis.pyramid.PlanePyramidSource;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class OpenSlide2Json {
     public static void main(String... args) {
@@ -40,7 +41,29 @@ public class OpenSlide2Json {
         throws IOException, JSONException
     {
         final JSONObject result = new JSONObject();
-        // TODO!! add some attributes
+        final JSONArray attributes = new JSONArray();
+        for (final Map.Entry<String, String> entry : source.getProperties().entrySet()) {
+            SimagisLiveUtils.putRowAttribute(attributes, entry.getKey(), entry.getValue(), true);
+        }
+        final JSONObject resolution = new JSONObject();
+        boolean resolutionInformationExist = false;
+        final Double pixelSizeInMicrons = source.pixelSizeInMicrons();
+        if (pixelSizeInMicrons != null) {
+            resolution.put("pixelSize", pixelSizeInMicrons);
+            resolution.put("physUnits", "microns");
+            resolutionInformationExist = true;
+        }
+        final Double magnification = source.magnification();
+        if (magnification != null) {
+            JSONObject objective = new JSONObject();
+            objective.put("magnification", magnification);
+            resolution.put("objective", objective);
+            resolutionInformationExist = true;
+        }
+        if (resolutionInformationExist) {
+            result.put("resolution", resolution);
+        }
+        result.put("attributes", attributes);
         return result;
     }
 }

@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOError;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -29,6 +29,7 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
     private final long dimY;
     private final int bandCount;
     private final List<long[]> dimensions;
+    private final Map<String, String> properties;
     private final LargeDataHolder largeData = new LargeDataHolder();
 
     public OpenSlidePlanePyramidSource(File imageFile) throws IOException {
@@ -58,13 +59,14 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         try {
             this.dimX = largeData.openSlide.getLevel0Width();
             this.dimY = largeData.openSlide.getLevel0Height();
+            this.properties = new TreeMap<>(largeData.openSlide.getProperties());
             this.bandCount = 3; // maybe, in future here will be better code
             debug(1, "OpenSlide opens image %s: %dx%d, %d bands%n",
                 imageFile, dimX, dimY, bandCount);
             long lastDimX = this.dimX;
             long lastDimY = this.dimY;
             int maxUsedNumberOfResolutions = Math.max(1, largeData.openSlide.getLevelCount());
-            this.dimensions = new ArrayList<long[]>();
+            this.dimensions = new ArrayList<>();
             this.dimensions.add(new long[] {bandCount, this.dimX, this.dimY});
             int compression = 0;
             for (int k = 1; k < maxUsedNumberOfResolutions; k++) {
@@ -127,6 +129,10 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
         return dimY;
     }
 
+    public Map<String, String> getProperties() {
+        return Collections.unmodifiableMap(properties);
+    }
+
     public int numberOfResolutions() {
         return numberOfResolutions;
     }
@@ -137,6 +143,17 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
 
     public long[] dimensions(int resolutionLevel) {
         return dimensions.get(resolutionLevel).clone();
+    }
+
+    @Override
+    public Double pixelSizeInMicrons() {
+        final Double mppx = parseDoubleIfPossible(properties.get("openslide.mpp-x"));
+        return mppx != null ? mppx : parseDoubleIfPossible(properties.get("openslide.mpp-y"));
+    }
+
+    @Override
+    public Double magnification() {
+        return parseDoubleIfPossible(properties.get("openslide.objective-power"));
     }
 
     public void loadResources() {
@@ -173,7 +190,7 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
             }
             if (sizeX > 0 || sizeY > 0) { // to be on the safe side: not try to read zero-size frame
                 largeData.openSlide.paintRegionARGB(
-                    packedData, fromX, fromY, getOpenSlideLevel(resolutionLevel), sizeX, sizeY);
+                    packedData, fromX, fromY, resolutionLevel, sizeX, sizeY);
             }
 //            for (int k = 0; k < Math.min(sizeY, 20); k++) {
 //                System.out.printf("%d: %s%n", k,
@@ -247,6 +264,17 @@ public final class OpenSlidePlanePyramidSource extends AbstractPlanePyramidSourc
             throw new IOError(e);
         } finally {
             largeData.lock.unlock();
+        }
+    }
+
+    private static Double parseDoubleIfPossible(String s) {
+        if (s == null) {
+            return null;
+        }
+        try {
+            return Double.parseDouble(s);
+        } catch (NumberFormatException e) {
+            return null;
         }
     }
 
