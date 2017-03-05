@@ -43,6 +43,7 @@
         </element>
         <element id="directory" name="LiveAPI">
           <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-sdk:1.2.15" />
+          <element id="library" level="project" name="Maven: net.algart.simagis:simagis-plane-pyramid-common:1.2.15" />
         </element>
       </element>
       <element id="directory" name=".djatoka">
